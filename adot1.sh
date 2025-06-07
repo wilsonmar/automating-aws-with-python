@@ -3,16 +3,22 @@
 # This is https://github.com/wilsonmar/automating-aws-with-python/blob/main/adot1.sh
 # to run the AWS AIOps tutorial at 
 # https://atp2.labs.awsevents.com/sa/lab/arn%3Aaws%3Alearningcontent%3Aus-east-1%3A470679935125%3Ablueprintversion%2FSPL-CX-300-DOIATX-1%3A1.0.2-06b924bf/en-US/468057f2-ab3b-4b05-be28-470c350a4a5d::iLsqWHFeLQr3DP3Y7WFTuQ
-#
+# Copyright 2025  Wilson Mar. All rights reserved.
+# The video on YouTube 
+# is created based on the PointPower file I created at:
+# https://7451111251303.gumroad.com/l/bkwmzaws-aiops.pptx
+
 # 1. manual steps: Start lab. Open Console. 
-# 3. manually copy the LabWorkspaceURL URL value and paste it into a new browser tab. 
+# 3. manually copy the LabWorkspaceURL value and paste it into a new browser tab. 
 #       Such as: https://dbr2wy8rla23d.cloudfront.net/?folder=/home/ec2-user/environment
 # 4. Manually copy password, switch, and paste Code-Server 
-# 5. Manually click Allow to the pop-up on the upper left.
+# 5. Manually click "Allow" to the pop-up on the upper left.
+#    The "TERMINAL" tab is where you run shell commands below.
 
 # Copy this line and paste in the GCP Terminal CLI:
 #    sh -c "$(curl -fsSL https://raw.githubusercontent.com/wilsonmar/automating-aws-with-python/main/adot.sh)" -v
-# If you see this, do the steps manually:
+
+# If you see this, do the steps manually below instead of running this shell file:
 #    curl: (28) Failed to connect to raw.githubusercontent.com port 443 after 300945 ms: Timeout was reached
 
 # 6. Download and install the ADOT Collector:
@@ -41,13 +47,18 @@ opentelemetry-instrument flask run
 # Choose a city (London),
 # use both the itinerary planner and review bot features.
 
-# "The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application."
+# "The server encountered an internal error and was unable to complete your request. 
+# Either the server is overloaded or there is an error in the application."
 
-# App suggestion: Add "Wheelchair accessible".
+#   File "/home/ec2-user/.local/lib/python3.12/site-packages/botocore/client.py", line 1017, in _make_api_call
+#    raise error_class(parsed_response, operation_name)
+# botocore.errorfactory.ThrottlingException: An error occurred (ThrottlingException) when calling the InvokeModelWithResponseStream operation (reached max retries: 4): Too many requests, please wait before trying again.
+
+# SUGGESTION: App suggestion: Add "Wheelchair accessible".
 
 # X-Ray traces are available in the X-Ray console.
 
-# To launch a misconfigured instance of the application, run the following command.
+# To launch a misconfigured instance of the application, run the following command:
 KNOWLEDGE_BASE_ID=this_is_broken opentelemetry-instrument flask run
 
 
